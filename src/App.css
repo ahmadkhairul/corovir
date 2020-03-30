@@ -1,0 +1,15 @@
+.card {
+  margin-bottom: 15px;
+}
+
+.col-md-4 .card-body {
+  height: 350px;
+}
+
+.col-md-8 .card-body {
+  height: 350px;
+}
+
+.col-md-3 .card-body {
+  height: 120px;
+}
