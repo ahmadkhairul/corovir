@@ -4,88 +4,61 @@ import moment from "moment";
 import { Animated } from "react-animated-css";
 
 const App = ({ obj }) => {
-  const objData = {
-    name: "Cases",
-    data: "cases"
-  };
+  const result = Object.keys(obj[0]).map(function(key) {
+    return [obj[0][key]];
+  });
+
+  const constant = [
+    "Country",
+    "Cases",
+    "Today Cases",
+    "Death",
+    "Today Death",
+    "Recovered",
+    "Active",
+    "Critical Condition",
+    "Cases Per 1M",
+    "Deaths Per 1M",
+    "First Case"
+  ];
+
+  let newObj = [];
+
+  for (let i = 1; i < result.length; i++) {
+    newObj.push({ name: constant[i], value: result[i][0] });
+  }
+  console.log(newObj);
   return (
     <>
+      {newObj.map((item, index) => {
+        return (
+          <Col md={3} key={index}>
+            <Animated
+              animationInDuration={1000}
+              animationInDelay={index * 100}
+              animationIn="fadeInDown"
+            >
+              <Card>
+                <Card.Header>{item.name}</Card.Header>
+                <Card.Body>{item.value}</Card.Body>
+                <Card.Footer></Card.Footer>
+              </Card>
+            </Animated>
+          </Col>
+        );
+      })}
       <Col md={3}>
-        <Card>
-          <Card.Header>Cases</Card.Header>
-          <Card.Body>{obj[0]?.cases}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Today Cases</Card.Header>
-          <Card.Body>{obj[0]?.todayCases}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Death</Card.Header>
-          <Card.Body>{obj[0]?.deaths}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Today Death</Card.Header>
-          <Card.Body>{obj[0]?.todayDeaths}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Recovered</Card.Header>
-          <Card.Body>{obj[0]?.recovered}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Active</Card.Header>
-          <Card.Body>{obj[0]?.active}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Critical Condition</Card.Header>
-          <Card.Body>{obj[0]?.critical}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Cases Per 1M</Card.Header>
-          <Card.Body>{obj[0]?.casesPerOneMillion}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Deaths Per 1M</Card.Header>
-          <Card.Body>{obj[0]?.deathsPerOneMillion}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>First Case</Card.Header>
-          <Card.Body>{obj[0]?.firstCase}</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
-      </Col>
-      <Col md={3}>
-        <Card>
-          <Card.Header>Last Update</Card.Header>
-          <Card.Body>{moment().format()} UTC Time</Card.Body>
-          <Card.Footer></Card.Footer>
-        </Card>
+        <Animated
+          animationInDuration={1000}
+          animationInDelay={1000}
+          animationIn="fadeInDown"
+        >
+          <Card>
+            <Card.Header>Last Update</Card.Header>
+            <Card.Body>{moment().format()} UTC Time</Card.Body>
+            <Card.Footer></Card.Footer>
+          </Card>
+        </Animated>
       </Col>
     </>
   );
