@@ -8,7 +8,7 @@ import Menu from "../app/menu";
 const App = () => {
   const [total, setTotal] = useState([]);
   const [world, setWorld] = useState([]);
-  const [country, setCountry] = useState("USA");
+  const [country, setCountry] = useState("World");
 
   const getAll = async () => {
     const resTotal = await axios.get(
@@ -66,29 +66,35 @@ const App = () => {
         </Col>
         <Menu obj={obj} />
         <Col md={6}>
-          <Card>
-            <Card.Header>World Data</Card.Header>
-            <Card.Body>
-              <Chart legendPosition="bottom" data={total} />
-            </Card.Body>
-            <Card.Footer></Card.Footer>
-          </Card>
-          <Card>
-            <Card.Header>About Corovir</Card.Header>
-            <Card.Body>
-              <p>
-                Corovir is very simple Web app for monitoring Corona Virus
-                Spread from all over the world.
-              </p>
-              <p>Made with React JS by Ahmad Khairul</p>
-              <p>
-                <a href="https://github.com/ahmadkhairul/corovir">
-                  source code
-                </a>
-              </p>
-            </Card.Body>
-            <Card.Footer></Card.Footer>
-          </Card>
+          <Animation
+            animationInDuration={1000}
+            animationInDelay={200}
+            animationIn="fadeIn"
+          >
+            <Card>
+              <Card.Header>World Data</Card.Header>
+              <Card.Body>
+                <Chart legendPosition="bottom" data={total} />
+              </Card.Body>
+              <Card.Footer></Card.Footer>
+            </Card>
+            <Card>
+              <Card.Header>About Corovir</Card.Header>
+              <Card.Body>
+                <p>
+                  Corovir is very simple Web app for monitoring Corona Virus
+                  Spread from all over the world.
+                </p>
+                <p>Made with React JS by Ahmad Khairul</p>
+                <p>
+                  <a href="https://github.com/ahmadkhairul/corovir">
+                    source code
+                  </a>
+                </p>
+              </Card.Body>
+              <Card.Footer></Card.Footer>
+            </Card>
+          </Animation>
         </Col>
         <Col md={3}></Col>
       </Row>
