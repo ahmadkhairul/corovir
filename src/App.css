@@ -6,14 +6,6 @@ body {
   margin-bottom: 15px;
 }
 
-.col-md-4 .card-body {
-  height: 350px;
-}
-
-.col-md-8 .card-body {
-  height: 350px;
-}
-
-.col-md-3 .card-body {
-  height: 120px;
+table td {
+  padding: 5px 20px 5px 0px;
 }

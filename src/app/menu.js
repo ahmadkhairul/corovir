@@ -1,10 +1,10 @@
 import React from "react";
-import { Col, Card } from "react-bootstrap";
+import { Table, Col, Card } from "react-bootstrap";
 import moment from "moment";
 import { Animated } from "react-animated-css";
 
 const App = ({ obj }) => {
-  const result = Object.keys(obj[0]).map(function(key) {
+  const result = Object.keys(obj[0]).map(function (key) {
     return [obj[0][key]];
   });
 
@@ -19,7 +19,8 @@ const App = ({ obj }) => {
     "Critical Condition",
     "Cases Per 1M",
     "Deaths Per 1M",
-    "First Case"
+    "Total Test",
+    "Test Per 1M",
   ];
 
   let newObj = [];
@@ -27,40 +28,40 @@ const App = ({ obj }) => {
   for (let i = 1; i < result.length; i++) {
     newObj.push({ name: constant[i], value: result[i][0] });
   }
-  console.log(newObj);
+  console.log(obj);
   return (
-    <>
-      {newObj.map((item, index) => {
-        return (
-          <Col md={3} key={index}>
-            <Animated
-              animationInDuration={1000}
-              animationInDelay={index * 100}
-              animationIn="fadeInDown"
-            >
-              <Card>
-                <Card.Header>{item.name}</Card.Header>
-                <Card.Body>{item.value}</Card.Body>
-                <Card.Footer></Card.Footer>
-              </Card>
-            </Animated>
-          </Col>
-        );
-      })}
-      <Col md={3}>
-        <Animated
-          animationInDuration={1000}
-          animationInDelay={1000}
-          animationIn="fadeInDown"
-        >
-          <Card>
-            <Card.Header>Last Update</Card.Header>
-            <Card.Body>{moment().format()} UTC Time</Card.Body>
-            <Card.Footer></Card.Footer>
-          </Card>
-        </Animated>
-      </Col>
-    </>
+    <Col md={4}>
+      <Animated
+        animationInDuration={1000}
+        animationInDelay={100}
+        animationIn="fadeInDown"
+      >
+        <Card>
+          <Card.Header>Detail</Card.Header>
+          <Card.Body>
+            <table>
+              {newObj.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>:</td>
+                    <td style={{ textAlign: "right" }}>
+                      {item.value.toLocaleString("id")}
+                    </td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td> Last Update </td>
+                <td>:</td>
+                <td>{moment().format("HH:mm DD/MM/YYYY")} UTC</td>
+              </tr>
+            </table>
+          </Card.Body>
+          <Card.Footer></Card.Footer>
+        </Card>
+      </Animated>
+    </Col>
   );
 };
 

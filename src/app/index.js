@@ -25,7 +25,7 @@ const App = () => {
     getAll();
   }, []);
 
-  const obj = world.filter(world => {
+  const obj = world.filter((world) => {
     return world.country === country;
   });
 
@@ -36,7 +36,7 @@ const App = () => {
   return (
     <Container fluid>
       <Row>
-        <Col md={3}>
+        <Col md={2}>
           <Animated animationInDuration={1000} animationIn="fadeInDown">
             <Card>
               <Card.Header>Country</Card.Header>
@@ -46,7 +46,7 @@ const App = () => {
                   <Form.Control
                     as="select"
                     value={country}
-                    onChange={event => {
+                    onChange={(event) => {
                       setCountry(event.target.value);
                     }}
                   >
@@ -65,7 +65,7 @@ const App = () => {
           </Animated>
         </Col>
         <Menu obj={obj} />
-        <Col md={12}>
+        <Col md={6}>
           <Card>
             <Card.Header>World Data</Card.Header>
             <Card.Body>
@@ -73,8 +73,6 @@ const App = () => {
             </Card.Body>
             <Card.Footer></Card.Footer>
           </Card>
-        </Col>
-        <Col md={12}>
           <Card>
             <Card.Header>About Corovir</Card.Header>
             <Card.Body>
@@ -92,6 +90,7 @@ const App = () => {
             <Card.Footer></Card.Footer>
           </Card>
         </Col>
+        <Col md={3}></Col>
       </Row>
     </Container>
   );
